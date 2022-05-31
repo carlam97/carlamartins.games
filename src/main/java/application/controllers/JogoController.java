@@ -1,7 +1,9 @@
 package application.controllers;
  
 import java.util.Optional;
- 
+import java.util.Set;
+import java.util.HashSet;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,8 +17,7 @@ import application.models.Plataforma;
 import application.repositories.JogoRepository;
 import application.repositories.GeneroRepository;
 import application.repositories.PlataformaRepository;
-import java.util.Set;
-import java.util.HashSet;
+
  
 @Controller
 @RequestMapping("/jogos")
@@ -32,7 +33,7 @@ public class JogoController {
  
     @RequestMapping("list")
     public String list(Model model) {
-        model.addAttribute("jogos", jogosRepo.findAll());
+        model.addAttribute(attributeName:"jogos", jogosRepo.findAll());
         return "list.jsp"; 
     }
  
@@ -86,7 +87,7 @@ public class JogoController {
                 if(plataforma.isPresent())
                     updatePlataforma.add(plataforma.get());
             }
-
+        jogo.get().setPlataformas(updatePlataforma);
         jogosRepo.save(jogo.get())
         return "redirect:/jogos/list";
     }
