@@ -32,27 +32,25 @@ public class Jogo {
 
     public void setId(int id) {
         this.id = id;
-    }
-    public int getId() {
+    }public int getId() {
         return this.id;
     }
   
     public String getTitulo() {
         return titulo;
-    }
-    public void setTitulo(String titulo) {
+    }public void setTitulo(String titulo) {
         this.titulo = titulo;
     }
+
     public Genero getGenero() {
         return genero;
-    }
-    public void setGenero(Genero genero) {
+    }public void setGenero(Genero genero) {
         this.genero = genero;
     }
+    
     public Set<Plataforma> getPlataformas() {
         return plataformas;
-    }
-    public void setPlataformas(Set<Plataforma> plataformas) {
+    }public void setPlataformas(Set<Plataforma> plataformas) {
         this.plataformas = plataformas;
     }
  
