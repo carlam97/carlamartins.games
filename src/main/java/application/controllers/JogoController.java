@@ -15,6 +15,8 @@ import application.models.Plataforma;
 import application.repositories.JogoRepository;
 import application.repositories.GeneroRepository;
 import application.repositories.PlataformaRepository;
+import java.util.Set;
+import java.util.HashSet;
  
 @Controller
 @RequestMapping("/jogos")
@@ -59,21 +61,33 @@ public class JogoController {
     @RequestMapping("update/{id}")
     public String formUpdate(Model model, @PathVariable int id) {
         Optional<Jogo> jogo = jogosRepo.findById(id);
+
         if(!jogo.isPresent())
             return "redirect:/jogos/list";
-        model.addAttribute("jogo", jogo.get());
+
+        model.addAttribute(attributeName: "jogo" jogo.get());
+        model.addAttribute(attributeName: "generos" generosRepo.findAll());
+        model.addAttribute(attributeName: "plataformas" plataformasRepo.findAll());
         return "/jogos/update.jsp";
     }
  
     @RequestMapping(value = "update", method = RequestMethod.POST)
-    public String saveUpdate(@RequestParam("nome") String nome, @RequestParam("id") int id) {
+    public String saveUpdate(@RequestParam("titulo") String titulo, @RequestParam("id") int id, @RequestParam("genero") int generoId, @RequestParam(name="plataformas", required =false)int[] plataformas) {
         Optional<Jogo> jogo = jogosRepo.findById(id);
         if(!jogo.isPresent())
             return "redirect:/jogos/list";
-        jogo.get().setNome(nome);
- 
-        jogosRepo.save(jogo.get());
- 
+        jogo.get().setNome(titulo);
+        jogo.get().setGenero(generosRepo.findById(generoId).getPlataformas());
+        Set<Plataforma> updatePlataforma = new HashSet<>();
+
+        if(plataformas!=null)
+            for(int p: plataformas){
+                Optional<Plataforma> plataforma = plataformasRepo.findById(p);
+                if(plataforma.isPresent())
+                    updatePlataforma.add(plataforma.get());
+            }
+
+        jogosRepo.save(jogo.get())
         return "redirect:/jogos/list";
     }
  
