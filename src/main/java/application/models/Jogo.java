@@ -28,7 +28,6 @@ public class Jogo {
         name = "jogos_possuem_plataformas",
         joinColumns = @JoinColumn(name = "jogos_id"),
         inverseJoinColumns=@JoinColumn(name="plataformas_id"))
-    
     private Set<Plataforma> plataformas = new HashSet<>();
 
     public void setId(int id) {

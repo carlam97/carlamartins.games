@@ -22,21 +22,19 @@ public class Genero {
 
     public void setId(int id) {
         this.id = id;
-    }
-    public int getId() {
+    }public int getId() {
         return this.id;
     }
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-    public String getNome(){
+    }public String getNome(){
         return this.nome;
     }
+
     public Set<Jogo> getJogos() {
         return jogos;
-    }
-    public void setJogos(Set<Jogo> jogos) {
+    }public void setJogos(Set<Jogo> jogos) {
         this.jogos = jogos;
     }
     
