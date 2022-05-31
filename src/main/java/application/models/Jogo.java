@@ -5,7 +5,7 @@ import javax.persistence.Table;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
@@ -19,7 +19,8 @@ public class Jogo {
     private int id;
     private String titulo;
 
-    @ManyToMany(mappedBy = "id_genero")
+    @ManyToOne
+    @JoinColumn(name="id_genero")
     private Genero genero;
 
     @ManyToMany
